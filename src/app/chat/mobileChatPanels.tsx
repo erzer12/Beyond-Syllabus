@@ -1,5 +1,7 @@
 "use client";
 
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import { FC, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -172,7 +174,10 @@ const MobileChatPanels: FC<MobileChatPanelsProps> = ({
                               : "text-card-foreground rounded-bl-none border"
                           }`}
                         >
-                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          <ReactMarkdown
+                            remarkPlugins={[remarkMath, remarkGfm]}
+                            rehypePlugins={[rehypeKatex]}
+                          >
                             {msg.content}
                           </ReactMarkdown>
                         </div>
