@@ -2,6 +2,8 @@
 
 import React, { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
@@ -215,7 +217,10 @@ export default function DesktopChatLayout({
                             : "text-card-foreground rounded-bl-none border"
                         }`}
                       >
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        <ReactMarkdown
+                          remarkPlugins={[remarkMath, remarkGfm]}
+                          rehypePlugins={[rehypeKatex]}
+                        >
                           {msg.content}
                         </ReactMarkdown>
                       </div>
