@@ -43,21 +43,24 @@ export type GenerateModuleTasksOutput = z.infer<
 const generateModuleTasksFlow = async (
   input: GenerateModuleTasksInput
 ): Promise<GenerateModuleTasksOutput> => {
-  const promptText = `
-You are an expert curriculum assistant. Generate a welcoming introductory message for a syllabus module, including:
-- 2–4 learning tasks (markdown list)
-- 2–3 real-world applications (markdown list)
-- 3–4 follow-up questions
+  const promptText = `You are an expert curriculum assistant. Create a premium-feel introductory message for a syllabus module with the following structure:
+
+- A short, engaging welcome line with emojis.
+- 2–4 learning tasks (as a markdown bullet list with emojis).
+- 2–3 real-world applications (as a markdown bullet list with emojis).
+- 3–4 reflective follow-up questions (numbered list with ❓ emoji).
 
 Return output strictly in JSON format:
+
 {
   "introductoryMessage": "...",
   "suggestions": ["...", "..."]
 }
+
+Input values:
 Module Title: "${input.moduleTitle}"
 Module Content: "${input.moduleContent}"
 `;
-
   try {
     const chatCompletion = await ai.chat.completions.create({
       messages: [{ role: 'user', content: promptText }],

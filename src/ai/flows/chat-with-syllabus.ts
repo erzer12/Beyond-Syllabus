@@ -74,9 +74,9 @@ User's Message: "${input.message}"
   try {
     const chatCompletion = await ai.chat.completions.create({
       messages: [{ role: 'user', content: promptText }],
-      model: input.model ||'meta-llama/llama-4-maverick-17b-128e-instruct' , // ✅ model comes from frontend
+      model: input.model ||'openai/gpt-oss-20b' , // ✅ model comes from frontend
       temperature: 0.6,
-      max_completion_tokens: 2048,
+      max_completion_tokens: 20048,
       top_p: 0.95,
     });
 

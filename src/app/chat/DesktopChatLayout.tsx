@@ -1,5 +1,5 @@
 "use client";
-
+import "katex/dist/katex.min.css"; 
 import React, { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import remarkMath from "remark-math";
