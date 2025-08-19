@@ -1,7 +1,5 @@
 "use client";
 
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
 import { FC, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,7 +17,10 @@ import { Message } from "@/ai/flows/chat-with-syllabus";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
+import "katex/dist/katex.min.css";
 import ModelSelector from "@/components/common/ModelSelector";
 
 interface MobileChatPanelsProps {
