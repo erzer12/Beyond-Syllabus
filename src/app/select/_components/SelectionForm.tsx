@@ -27,17 +27,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import {
-  Computer,
-  Cog,
-  HardHat,
-  CircuitBoard,
-  Bolt,
-  Info,
-  GraduationCap,
-  BookOpen,
-  Loader2,
-} from "lucide-react";
+import { Info, GraduationCap, BookOpen, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface SyllabusDataStructure {
@@ -48,22 +38,10 @@ interface SelectionFormProps {
   directoryStructure: SyllabusDataStructure;
 }
 
-const programIcons: { [key: string]: React.ElementType } = {
-  "computer-science": Computer,
-  "mechanical-engineering": Cog,
-  "civil-engineering": HardHat,
-  "electronics-communication-engineering": CircuitBoard,
-  "electrical-electronics-engineering": Bolt,
-};
-
 function capitalizeWords(str: string | undefined): string {
   if (!str) return "";
-  return str
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  return str.replace(/-/g, " ").toUpperCase(); // replace "-" with space and uppercase everything
 }
-
 function formatSemesterName(semesterId: string): string {
   if (!semesterId) return "";
   return `Semester ${semesterId.replace("s", "").replace(/^0+/, "")}`;
@@ -181,7 +159,7 @@ export function SelectionForm({ directoryStructure }: SelectionFormProps) {
   };
 
   return (
-    <Card className="w-full shadow-2xl rounded-2xl bg-white dark:bg-white/10 backdrop-blur-sm mt-[5vh]">
+    <Card className="w-full shadow-2xl rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-gray-900 dark:to-gray-800 backdrop-blur-sm mt-[5vh]">
       {/* Breadcrumb Navigation */}
       <div className="flex items-center justify-center flex-wrap gap-2 p-4 border-b border-muted">
         {stepsConfig.map(({ step: stepNumber, label }, index) => {
@@ -222,7 +200,7 @@ export function SelectionForm({ directoryStructure }: SelectionFormProps) {
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-8 min-h-[400px] flex items-center justify-center">
+        <CardContent className="space-y-8  flex items-center justify-center">
           <AnimatePresence mode="wait">
             {isLoading ? (
               <MotionDiv
@@ -262,37 +240,42 @@ export function SelectionForm({ directoryStructure }: SelectionFormProps) {
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="w-full"
+                    className="w-full flex items-start justify-center"
                   >
-                    <div className="space-y-4">
-                      <Label className="text-lg font-semibold text-center block">
+                    <div className="space-y-6 flex flex-col items-center justify-center rounded-2xl p-6">
+                      <Label className="text-xl font-bold text-center text-purple-900 dark:text-purple-200">
                         1. Select Your University
                       </Label>
-                      <div className="grid md:grid-cols-3 gap-4">
-                        {Object.keys(directoryStructure).map((universityId) => (
-                          <motion.div
-                            key={universityId}
-                            whileHover={{ scale: 1.02, y: -5 }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            <Card
-                              className="cursor-pointer bg-transparent border-2 border-purple-700   
-             hover:border-purple-500 hover:shadow-lg hover:shadow-purple-500/30 
-             hover:bg-gradient-to-br hover:from-purple-900 hover:to-purple-700 
-             dark:hover:from-purple-800 dark:hover:to-purple-600 
-             transition-all rounded-xl p-6 text-center"
-                              onClick={() =>
-                                handleUniversitySelect(universityId)
-                              }
-                            >
-                              <GraduationCap className="h-12 w-12 text-primary mx-auto mb-3" />
-                              <p className="font-semibold text-lg">
+
+                      <Select
+                        onValueChange={(value) => {
+                          handleUniversitySelect(value); // ✅ sets selected university
+                          setStep(2); // ✅ instantly move to next step
+                        }}
+                      >
+                        <SelectTrigger className="w-[320px] py-4 px-4 text-lg font-medium rounded-xl border border-purple-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:border-purple-500 focus:ring-2 focus:ring-purple-500 transition-all">
+                          <SelectValue placeholder="Choose a university" />
+                        </SelectTrigger>
+                        <SelectContent
+                          position="popper"
+                          side="bottom"
+                          sideOffset={8}
+                          avoidCollisions={false}
+                          className="w-[320px] rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700"
+                        >
+                          {Object.keys(directoryStructure).map(
+                            (universityId) => (
+                              <SelectItem
+                                key={universityId}
+                                value={universityId}
+                                className="capitalize px-3 py-2 text-base hover:bg-purple-100 dark:hover:bg-purple-800 rounded-lg cursor-pointer transition-colors"
+                              >
                                 {capitalizeWords(universityId)}
-                              </p>
-                            </Card>
-                          </motion.div>
-                        ))}
-                      </div>
+                              </SelectItem>
+                            )
+                          )}
+                        </SelectContent>
+                      </Select>
                     </div>
                   </MotionDiv>
                 )}
@@ -306,24 +289,31 @@ export function SelectionForm({ directoryStructure }: SelectionFormProps) {
                     exit="exit"
                     className="w-full"
                   >
-                    <div className="space-y-4 flex h-[40vh] flex-col items-center">
-                      <Label className="text-lg font-semibold text-center block">
+                    <div className="space-y-6 flex flex-col items-center justify-center rounded-2xl p-6">
+                      <Label className="text-xl font-bold text-center text-purple-900 dark:text-purple-200">
                         2. Choose Your Program
                       </Label>
+
                       <Select
                         onValueChange={handleProgramSelect}
                         value={selectedProgramId ?? ""}
                       >
-                        <SelectTrigger className="py-6 text-base w-[300px]">
+                        <SelectTrigger className="w-[320px] py-4 px-4 text-lg font-medium rounded-xl border border-purple-300 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:border-purple-500 focus:ring-2 focus:ring-purple-500 transition-all">
                           <SelectValue placeholder="Select Program" />
                         </SelectTrigger>
-                        <SelectContent className="max-h-[300px] dark:bg-black overflow-y-auto">
+                        <SelectContent
+                          position="popper"
+                          side="bottom"
+                          sideOffset={8}
+                          avoidCollisions={false}
+                          className="w-[320px] rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 max-h-[300px] overflow-y-auto"
+                        >
                           {Object.keys(selectedUniversityData).map(
                             (programId) => (
                               <SelectItem
                                 key={programId}
                                 value={programId}
-                                className="capitalize hover:bg-primary/10"
+                                className="capitalize px-3 py-2 text-base hover:bg-purple-100 dark:hover:bg-purple-800 rounded-lg cursor-pointer transition-colors"
                               >
                                 {capitalizeWords(programId)}
                               </SelectItem>

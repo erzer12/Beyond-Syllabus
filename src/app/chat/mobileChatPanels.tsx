@@ -17,7 +17,10 @@ import { Message } from "@/ai/flows/chat-with-syllabus";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
+import "katex/dist/katex.min.css";
 import ModelSelector from "@/components/common/ModelSelector";
 
 interface MobileChatPanelsProps {
@@ -172,7 +175,10 @@ const MobileChatPanels: FC<MobileChatPanelsProps> = ({
                               : "text-card-foreground rounded-bl-none border"
                           }`}
                         >
-                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          <ReactMarkdown
+                            remarkPlugins={[remarkMath, remarkGfm]}
+                            rehypePlugins={[rehypeKatex]}
+                          >
                             {msg.content}
                           </ReactMarkdown>
                         </div>

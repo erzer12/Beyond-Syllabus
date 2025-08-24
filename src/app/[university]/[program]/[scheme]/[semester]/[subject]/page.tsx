@@ -90,17 +90,19 @@ function findDataPath(
   return { university, program, scheme, semester, subject };
 }
 
-function capitalizeWords(str: string | undefined): string {
-  if (!str) return "";
-  return str
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
-
 function formatSemesterName(semesterId: string): string {
   if (!semesterId) return "";
   return `Semester ${semesterId.replace("s", "").replace(/^0+/, "")}`;
+}
+function capitalizeWords(str: string | undefined): string {
+  if (!str) return "";
+  return str
+    .replace(/-/g, " ") // replace all "-" with spaces
+    .split(" ")
+    .map((word) =>
+      word.length > 0 ? word.charAt(0).toUpperCase() + word.slice(1) : ""
+    )
+    .join(" ");
 }
 
 export default async function SubjectPage({ params }: SubjectPageProps) {
@@ -159,7 +161,7 @@ export default async function SubjectPage({ params }: SubjectPageProps) {
 
             <div className="mt-8 mb-12">
               <h1 className="text-3xl font-bold md:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                {subject.name}
+                {capitalizeWords(subject.name)}
               </h1>
               <p className="text-muted-foreground mt-2 text-lg">
                 {subject.code}

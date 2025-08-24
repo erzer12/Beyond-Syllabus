@@ -147,7 +147,16 @@ export default function SubjectsPage({ params }: SubjectsPageProps) {
   if (!dataPath) {
     notFound();
   }
-
+  function capitalizeWords(str: string | undefined): string {
+    if (!str) return "";
+    return str
+      .replace(/-/g, " ") // replace all "-" with spaces
+      .split(" ")
+      .map((word) =>
+        word.length > 0 ? word.charAt(0).toUpperCase() + word.slice(1) : ""
+      )
+      .join(" ");
+  }
   const { university, program, scheme, semester } = dataPath;
 
   const breadcrumbItems = [
@@ -188,7 +197,7 @@ export default function SubjectsPage({ params }: SubjectsPageProps) {
                       <CardHeader>
                         <div className="flex justify-between items-start">
                           <CardTitle className="text-xl pr-4 break-words w-44">
-                            {subject.name}
+                            {capitalizeWords(subject.name)}
                           </CardTitle>
                           <Badge
                             variant="outline"

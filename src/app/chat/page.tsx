@@ -1,5 +1,5 @@
 "use client";
-
+import "katex/dist/katex.min.css"; 
 import { useState, useEffect, useRef } from "react";
 import { chatWithSyllabus, Message } from "@/ai/flows/chat-with-syllabus";
 import { generateModuleTasks } from "@/ai/flows/generate-module-tasks";
