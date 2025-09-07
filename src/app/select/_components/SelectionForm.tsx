@@ -29,14 +29,10 @@ import {
 } from "@/components/ui/tooltip";
 import { Info, GraduationCap, BookOpen, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-interface SyllabusDataStructure {
-  [key: string]: any;
-}
-
-interface SelectionFormProps {
-  directoryStructure: SyllabusDataStructure;
-}
+import { useData } from "@/contexts/dataContext";
+import { Footer } from "@/components/common/Footer";
+import { Header } from "@/components/common/Header";
+import ErrorDisplay from "@/components/common/ErrorDisplay";
 
 function capitalizeWords(str: string | undefined): string {
   if (!str) return "";
@@ -55,9 +51,9 @@ const stepVariants = {
 
 const MotionDiv = motion.div;
 
-export function SelectionForm({ directoryStructure }: SelectionFormProps) {
+export function SelectionForm() {
   const router = useRouter();
-
+  const { data: directoryStructure, isFetching, isError, error } = useData();
   const [selectedUniversityId, setSelectedUniversityId] = useState<
     string | null
   >(null);
@@ -128,7 +124,25 @@ export function SelectionForm({ directoryStructure }: SelectionFormProps) {
     }
     setStep(level);
   };
-
+  if (isFetching) return;
+  if (isError) return <ErrorDisplay errorMessage={error} />;
+  if (!directoryStructure || Object.keys(directoryStructure).length === 0) {
+    return (
+      <>
+        <Header />
+        <main className="container mx-auto px-4 py-12 md:py-20 flex justify-center items-center flex-1">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-3xl font-bold mb-4">No Syllabus Data Found</h1>
+            <p className="text-muted-foreground">
+              Please ensure your 'universities' folder and its subdirectories
+              contain valid syllabus data.
+            </p>
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
   const selectedUniversityData = selectedUniversityId
     ? directoryStructure[selectedUniversityId]
     : null;
