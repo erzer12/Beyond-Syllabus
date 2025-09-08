@@ -1,3 +1,4 @@
+"use client";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/common/Header";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
@@ -9,6 +10,8 @@ import { Footer } from "@/components/common/Footer";
 import { MindMap } from "@/app/mindMap/mindMap";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
+import { useData } from "@/contexts";
+import { use } from "react";
 
 interface SubjectPageProps {
   params: Promise<{
@@ -22,21 +25,6 @@ interface SubjectPageProps {
 
 interface DirectoryStructure {
   [key: string]: any;
-}
-
-async function getDirectoryStructure(): Promise<DirectoryStructure> {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/universities`,
-    {
-      cache: "no-store",
-    }
-  );
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch universities data");
-  }
-
-  return res.json();
 }
 
 function findDataPath(
@@ -105,19 +93,11 @@ function capitalizeWords(str: string | undefined): string {
     .join(" ");
 }
 
-export default async function SubjectPage({ params }: SubjectPageProps) {
-  const resolvedParams = await params;
-  let directoryStructure: DirectoryStructure | null = null;
-  let error: string | null = null;
+export default function SubjectPage({ params }: SubjectPageProps) {
+  const resolvedParams = use(params);
+  const { error, isError, data: directoryStructure } = useData();
 
-  try {
-    directoryStructure = await getDirectoryStructure();
-  } catch (e: any) {
-    console.error("Error fetching directory structure:", e);
-    error = "Failed to load syllabus data.";
-  }
-
-  if (error || !directoryStructure) {
+  if (isError || !directoryStructure) {
     return (
       <ErrorDisplay
         errorMessage={error || "Could not fetch directory structure."}

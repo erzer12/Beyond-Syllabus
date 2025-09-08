@@ -26,6 +26,7 @@ import ErrorDisplay from "@/components/common/ErrorDisplay";
 import { AnimatedDiv } from "@/components/common/AnimatedDiv";
 import { Footer } from "@/components/common/Footer";
 import { useGetDirectoryStructure } from "@/hooks/query";
+import { useData } from "@/contexts";
 
 interface SubjectsPageProps {
   params: Promise<{
@@ -108,7 +109,7 @@ export default function SubjectsPage({ params }: SubjectsPageProps) {
   const router = useRouter();
   const resolvedParams = use(params);
   const [loadingSubject, setLoadingSubject] = useState<string | null>(null);
-  const { data, isError, error, isFetching } = useGetDirectoryStructure();
+  const { data, isFetching, isError, error } = useData();
 
   const handleViewSyllabus = async (subjectId: string, subjectName: string) => {
     setLoadingSubject(subjectId);
