@@ -11,6 +11,7 @@ import { MindMap } from "@/app/mindMap/mindMap";
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import { useData } from "@/contexts";
+import { use } from "react";
 
 interface SubjectPageProps {
   params: Promise<{
@@ -92,8 +93,8 @@ function capitalizeWords(str: string | undefined): string {
     .join(" ");
 }
 
-export default async function SubjectPage({ params }: SubjectPageProps) {
-  const resolvedParams = await params;
+export default function SubjectPage({ params }: SubjectPageProps) {
+  const resolvedParams = use(params);
   const { error, isError, data: directoryStructure } = useData();
 
   if (isError || !directoryStructure) {
