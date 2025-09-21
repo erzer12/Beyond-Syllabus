@@ -1,12 +1,15 @@
 ![Beyond Syllabus Logo](https://purple-movement.com/assets/logo_pm-Bx55hodj.png)
 
-# Beyond Syllabus 
+# Beyond Syllabus
+
 ## AI-Powered Learning Beyond Boundaries 🌟
 
-## Don’t just study the syllabus. Understand it. Question it. Go beyond it.
+## Don’t just study the syllabus. Understand it. Question it. Go beyond it
 
 ## [live](https://beyondsyllabus.in/)
+
 ---
+
 ## 🚀 What is Beyond Syllabus?
 
 **Beyond Syllabus** is the **front-end interface** for the open-source [WikiSyllabus](https://github.com/The-Purple-Movement/WikiSyllabus) repository — a platform that transforms any syllabus into an **interactive AI-powered learning companion**.
@@ -44,7 +47,8 @@ Our vision is a world where:
 
 ## 🟣 Part of the Purple Movement
 
-Beyond Syllabus is one of three core missions of the **Purple Movement**:  
+Beyond Syllabus is one of three core missions of the **Purple Movement**:
+
 - **Beyond Syllabus** – Free learning from outdated curriculum constraints.  
 - **Beyond Gatekeepers** – Open access to knowledge without institutional blockers.  
 - **Beyond Borders** – Connect learners globally, without geographic or social barriers.  
@@ -86,6 +90,7 @@ The Purple Movement blends the **passion & curiosity of youth** (Red) with the *
 ## 🤝 How to Contribute
 
 This is **not just an app** — it’s a **movement**. You can:  
+
 - **Develop** – Improve UI/UX and AI integrations  
 - **Enrich Content** – Add examples, case studies, and industry mappings  
 - **Spread Awareness** – Share with educators, media, and policy makers  
@@ -94,6 +99,7 @@ This is **not just an app** — it’s a **movement**. You can:
 🎖 **Contributors are featured** in the Hall of Builders and join the Purple Movement global network.
 
 ---
+
 # 🏃‍♂️ Run Locally
 
 You can set up **Beyond Syllabus** on your local machine for development or testing. Follow these steps:
@@ -110,56 +116,51 @@ cd Beyond-Syllabus
 Make sure you have **Node.js (v16+)** and **npm** or **yarn** installed.
 
 ```bash
-# Using npm
-npm install
+# Using bun
+bun install
 
-# Or using yarn
-yarn install
 ```
 
 ## 3. Configure Environment Variables
 
 Create a `.env` file in the root directory and add the required keys, for example:
 
-```
-NEXT_PUBLIC_API_URL=http://localhost:9002
-GEMINI_API_KEY=your_gemini_api_key_here
+```json
+NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+GROQ_API_KEY=your_groq_api_here
 ```
 
-> Replace `your_gemini_api_key_here` with your own OpenAI API key if using the AI features.
+> Replace `your_groq_api_here` with your own Groq API key if using the AI features.
 
 ## 4. Start the Development Server
 
 ```bash
-# Using npm
-npm run dev
+# Using bun
+bun dev
 
-# Or using yarn
-yarn dev
 ```
 
-The app should now be running at [http://localhost:3000](http://localhost:9002).
+The app should now be running at [http://localhost:3001](http://localhost:3001).
 
 ## 5. Build for Production (Optional)
 
 ```bash
-# Using npm
-npm run build
-npm start
+# Using turbo
+turbo build
+turbo dev
 
-# Or using yarn
-yarn build
-yarn start
 ```
 
 ## 📣 Call to Action – Join the Learning Revolution
 
 We are DONE with:
+
 - Students sitting only for attendance  
 - Teachers teaching only to “finish portions”  
 - Exams that reward memorisation over understanding  
 
 If you believe:
+
 - The **next generation deserves better learning tools**  
 - **India can lead the AI wave**  
 - **Learning should be connected to purpose**  
@@ -170,7 +171,6 @@ If you believe:
 
 ## 📬 Get Involved
 
- 
 🌐  [**Purple Movement:**](https://purple-movement.com/)
 
 ---
