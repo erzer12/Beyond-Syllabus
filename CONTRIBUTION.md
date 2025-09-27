@@ -1,115 +1,56 @@
+# Contributing Guidelines
 
-# 📚 Contribution Guide
+Welcome to my portfolio website! We appreciate your interest in contributing to my project. By contributing, you help me create a better software for everyone.
 
-Thank you for your interest in contributing to this WikiSyllabus Repository! 🙌  
-Together, we can make a fully open, searchable, and markdown-based syllabus index for students, teachers, and developers.
-
----
-
-## 📌 What You Can Contribute
-
-- ✅ **New Syllabus Files**  
-  - Add missing course markdowns (`.md`) for different branches, semesters, or years.
-- 🛠️ **Fix Errors**  
-  - Typos, outdated content, or formatting issues.
-- 📘 **Add References**  
-  - Useful books, links, or official sources for specific courses.
-- 💡 **Improve Structure**  
-  - Suggestions for folder naming, file structure, or tagging.
+Before you start contributing, please take a moment to read the following guidelines to ensure a smooth and effective contribution process.
 
 ---
 
-## 🗂 Folder & File Naming Convention
+## Table of Contents
 
-- Follow this structure:
-
-```
-
-universities/university/branch/year/semester/xx.md
-
-```
-
-✅ Example:
-
-```
-
-universities/ktu/computer-science/2019/s8/01.md
-
-````
-
-### 🔹 Rules
-
-- ✅ **Every file and directory name must be written in lowercase.**  
-- 🔁 If you come across any uppercase in structure, **rename them to lowercase.**
-- ✅ Filenames should always be **numbers** (e.g., `01.md`, `02.md`, ...)
-- ❌ Do **not** use course codes in filenames.
-- ✅ Course details like code/title should be inside the **YAML frontmatter**
-- ✅ For multiple words in folder names, use **hyphens**, not underscores or spaces.
+- [Contributing Guidelines](#contributing-guidelines)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+  - [How Can I Contribute?](#how-can-i-contribute)
+    - [Reporting Bugs](#reporting-bugs)
+    - [Suggesting Enhancements](#suggesting-enhancements)
+    - [Working on Issues](#working-on-issues)
+    - [Submitting Pull Requests](#submitting-pull-requests)
+  - [🤝 Code of Conduct](#-code-of-conduct)
+  - [🙋 Need Help?](#-need-help)
 
 ---
 
-## 📝 Markdown File Format
+## Getting Started
 
-Each `.md` file must start with YAML frontmatter:
+- Fork the repository on GitHub.
+- Clone your forked repository locally: `git clone https://github.com/The-Purple-Movement/Beyond-Syllabus.git`
+- Change your directory to the project: `cd Beyond-Syllabus`
+- Install project dependencies: `bun install`
+- Run in server: `bun run dev`
 
-```yaml
----
-country: "india"
-university: "ktu"
-branch: "computer-science"
-version: "2019"
-semester: 8
-course_code: "cst402"
-course_title: "distributed computing"
-language: "english"
-contributor: "@your-github-username"
----
-````
+## How Can I Contribute?
 
-Follow this with the syllabus content (objectives, content, references, etc.)
+### Reporting Bugs
 
----
+If you find a bug, please ensure the bug was not already reported by searching on GitHub under [Issues](https://github.com/The-Purple-Movement/Beyond-Syllabus/issues). If you can't find an existing issue addressing the problem, please [open a new issue](https://github.com/The-Purple-Movement/Beyond-Syllabus/issues/new) and provide detailed information about the bug.
 
-## 📝 How to Contribute
+### Suggesting Enhancements
 
-### 1. **Fork the Repository**
+If you have an idea for an enhancement, we welcome your input. Before creating a new enhancement issue, please check the existing issues to see if your enhancement idea has already been discussed. If it hasn't, [create a new issue](https://github.com/The-Purple-Movement/Beyond-Syllabus/issues/new) and outline your enhancement proposal.
 
-Create your own copy of the repository to work on.
+### Working on Issues
 
-### 2. **Create a New Branch**
+Feel free to pick any open issue from our [issue tracker](https://github.com/The-Purple-Movement/Beyond-Syllabus/issues) that you find interesting. Comment on the issue that you would like to work on it so that others are aware you are addressing it. If you need more context on a particular issue, please ask for clarification.
 
-```bash
-git checkout -b feat/add-cst402
-```
+### Submitting Pull Requests
 
-### 3. **Add Your Markdown File**
-
-Use the correct folder structure and file naming convention.
-
-### 4. **Commit Your Changes**
-
-```bash
-git add .
-git commit -m "feat: add cst402 - distributed computing"
-```
-
-### 5. **Push and Make a Pull Request**
-
-```bash
-git push origin feat/add-cst402
-```
-
-Then go to GitHub and open a **Pull Request (PR)** to the **dev** branch.
-
----
-
-## 🔍 Before You Submit
-
-✅ Check if the course already exists.
-✅ Double-check formatting and spelling.
-✅ Add your GitHub username as `contributor`.
-✅ Ensure **all folders and files are lowercase**.
-✅ Confirm naming and structure matches the guidelines.
+1. Fork the repository and create your branch from `main`: `git checkout -b your-branch-name`
+2. Make your changes and test thoroughly.
+3. Add, commit, and push your changes to your forked repository.
+4. Create a pull request to the `main` branch of the original repository.
+5. Clearly describe your changes and why you think they should be merged.
+6. Be willing to make any requested changes or improvements.
 
 ---
 
@@ -122,7 +63,7 @@ Be respectful, inclusive, and collaborative — this is a shared space for learn
 
 ## 🙋 Need Help?
 
-Open an [issue](https://github.com/The-Purple-Movement/WikiSyllabus/issues) or tag a maintainer (e.g., `@admin`) in your PR for assistance.
+Open an [issue](https://github.com/The-Purple-Movement/Beyond-Syllabus/issues) or tag a maintainer (e.g., `@admin`) in your PR for assistance.
 
 ---
 
