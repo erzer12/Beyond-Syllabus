@@ -21,12 +21,12 @@ export function Header() {
         <div className="flex items-center gap-2 ">
           <ThemeToggle />
           <Link href="/leaderboard">
-            <Button variant="outline" size="icon">
+            <Button variant="outline" size="icon" aria-label="View leaderboard">
               <Trophy className="h-5 w-5" />
             </Button>
           </Link>
           <Link href="/profile">
-            <Button variant="outline" size="icon">
+            <Button variant="outline" size="icon" aria-label="View profile">
               <User className="h-5 w-5" />
             </Button>
           </Link>
