@@ -121,8 +121,7 @@ export function CourseModules({ subjectId, modules, progress: initialProgress }:
                     <span className="flex-1 mr-4">{module.title}</span>
                     <Checkbox
                       checked={completedModules[index]}
-                      onClick={(e) => {
-                        e.stopPropagation();
+                      onCheckedChange={() => {
                         handleModuleComplete(index);
                       }}
                     />
