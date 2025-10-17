@@ -28,10 +28,38 @@ interface CourseModulesProps {
 export function CourseModules({ subjectId, modules, progress: initialProgress }: CourseModulesProps) {
   const router = useRouter();
   const [loadingModuleIndex, setLoadingModuleIndex] = useState<number | null>(null);
-  const [completedModules, setCompletedModules] = useState<boolean[]>(() =>
-    modules.map(() => false)
-  );
+  const [completedModules, setCompletedModules] = useState<boolean[]>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(`completedModules_${subjectId}`);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length === modules.length) {
+            return parsed;
+          }
+        } catch (e) {
+          // ignore parse errors
+        }
+      }
+    }
+    return modules.map(() => false);
+  });
   const [progress, setProgress] = useState(initialProgress);
+
+  // Persist completedModules to localStorage whenever it changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(`completedModules_${subjectId}`, JSON.stringify(completedModules));
+    }
+  }, [completedModules, subjectId]);
+
+  // If modules length changes (e.g., new modules added), reset or adjust completedModules
+  useEffect(() => {
+    if (completedModules.length !== modules.length) {
+      setCompletedModules(modules.map(() => false));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modules.length]);
 
   useEffect(() => {
     const newProgress = (completedModules.filter(Boolean).length / modules.length) * 100;
