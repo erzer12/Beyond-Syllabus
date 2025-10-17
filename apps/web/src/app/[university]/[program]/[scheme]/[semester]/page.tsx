@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
   CardFooter,
+  CardContent,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -25,8 +26,8 @@ import {
 import ErrorDisplay from "@/components/common/ErrorDisplay";
 import { AnimatedDiv } from "@/components/common/AnimatedDiv";
 import { Footer } from "@/components/common/Footer";
-// import { useGetDirectoryStructure } from "@/hooks/query";
 import { useData } from "@/contexts";
+import { Progress } from "@/components/ui/progress";
 
 interface SubjectsPageProps {
   params: Promise<{
@@ -221,6 +222,9 @@ export default function SubjectsPage({ params }: SubjectsPageProps) {
                         </div>
                         <CardDescription>{subject.code}</CardDescription>
                       </CardHeader>
+                      <CardContent>
+                        <Progress value={33} />
+                      </CardContent>
                       <CardFooter>
                         <Button
                           onClick={() =>

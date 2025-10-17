@@ -1,4 +1,4 @@
-import { GraduationCap, MessageSquareCode, Sparkles } from "lucide-react";
+import { GraduationCap, MessageSquareCode, Sparkles, User, Trophy } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ThemeToggle } from "./ThemeToggle";
@@ -20,6 +20,16 @@ export function Header() {
 
         <div className="flex items-center gap-2 ">
           <ThemeToggle />
+          <Link href="/leaderboard">
+            <Button variant="outline" size="icon">
+              <Trophy className="h-5 w-5" />
+            </Button>
+          </Link>
+          <Link href="/profile">
+            <Button variant="outline" size="icon">
+              <User className="h-5 w-5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </header>

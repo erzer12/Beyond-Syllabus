@@ -1,0 +1,51 @@
+.container {
+  padding: 2rem;
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+}
+
+.username {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.userHandle {
+  font-size: 1rem;
+  color: #888;
+}
+
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.level, .streak, .rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.achievementsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}

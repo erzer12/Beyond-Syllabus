@@ -154,6 +154,7 @@ export default function SubjectPage({ params }: SubjectPageProps) {
                 <CourseModules
                   subjectId={subject.id}
                   modules={subject.modules || []}
+                  progress={subject.progress || 0}
                 />
               </div>
               <div className=" flex gap-5 w-full flex-col">
