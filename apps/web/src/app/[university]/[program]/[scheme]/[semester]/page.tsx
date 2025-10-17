@@ -223,7 +223,7 @@ export default function SubjectsPage({ params }: SubjectsPageProps) {
                         <CardDescription>{subject.code}</CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <Progress value={33} />
+                        <Progress value={subject.progress ?? 0} />
                       </CardContent>
                       <CardFooter>
                         <Button
